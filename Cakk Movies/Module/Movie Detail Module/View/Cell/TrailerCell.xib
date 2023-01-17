@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TrailerCell" customModule="Cakk_Movies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="316"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="382" height="316"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPl-pe-Tva" userLabel="Trailer View">
+                        <rect key="frame" x="8" y="8" width="366" height="300"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Official Trailer 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOc-nR-53U" userLabel="Official Trailer 1">
+                                <rect key="frame" x="8" y="8" width="350" height="28"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdp-rP-qCw">
+                                <rect key="frame" x="8" y="52" width="350" height="240"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="d5p-Wu-luH"/>
+                                </constraints>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gdp-rP-qCw" firstAttribute="leading" secondItem="mPl-pe-Tva" secondAttribute="leading" constant="8" id="49Z-dQ-xjq"/>
+                            <constraint firstAttribute="trailing" secondItem="gdp-rP-qCw" secondAttribute="trailing" constant="8" id="OUT-vD-FXm"/>
+                            <constraint firstItem="gdp-rP-qCw" firstAttribute="top" secondItem="cOc-nR-53U" secondAttribute="bottom" constant="16" id="Py1-pC-BxU"/>
+                            <constraint firstItem="cOc-nR-53U" firstAttribute="top" secondItem="mPl-pe-Tva" secondAttribute="top" constant="8" id="TBt-fq-iK4"/>
+                            <constraint firstAttribute="bottom" secondItem="gdp-rP-qCw" secondAttribute="bottom" constant="8" id="ZCJ-1j-M6P"/>
+                            <constraint firstAttribute="trailing" secondItem="cOc-nR-53U" secondAttribute="trailing" constant="8" id="jgT-bl-fIG"/>
+                            <constraint firstItem="cOc-nR-53U" firstAttribute="leading" secondItem="mPl-pe-Tva" secondAttribute="leading" constant="8" id="lBF-eY-wEx"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mPl-pe-Tva" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="fZq-hQ-Xyv"/>
+                    <constraint firstAttribute="bottom" secondItem="mPl-pe-Tva" secondAttribute="bottom" constant="8" id="opG-Ct-oqe"/>
+                    <constraint firstItem="mPl-pe-Tva" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="p3p-tm-3rU"/>
+                    <constraint firstAttribute="trailing" secondItem="mPl-pe-Tva" secondAttribute="trailing" constant="8" id="w5z-Od-hwg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="nameLabel" destination="cOc-nR-53U" id="S4r-m5-csP"/>
+                <outlet property="trailerWebview" destination="gdp-rP-qCw" id="CB3-rg-jvT"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="59.598214285714285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
