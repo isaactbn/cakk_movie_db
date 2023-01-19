@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import STPopup
 
 protocol MovieDetailView: BaseView {
     var presenter: MovieDetailPresenter? { get set }
@@ -14,6 +15,7 @@ protocol MovieDetailView: BaseView {
     var navTitle: String {get set}
     
     func update(with movies: MovieDetailBodyResponse)
+    func connectionError(with error: Int)
     func update(with error: String)
     
     func updateReview(with reviews: MovieReviewBodyResponse)
@@ -44,6 +46,7 @@ class MovieDetailVC: BaseVC, MovieDetailView {
     
     var presenter: MovieDetailPresenter?
     
+    var popUpVC: STPopupController?
     var data: MovieDetailBodyResponse?
     var dataReview: MovieReviewBodyResponse?
     var dataTrailer: MovieTrailerBodyResponse?
@@ -85,10 +88,10 @@ class MovieDetailVC: BaseVC, MovieDetailView {
     private func setupData() {
         if data != nil {
             let resourceImage = ImageResource(downloadURL: URL(string: data?.backdrop_path.setURL() ?? "")!)
-            backDropImage.kf.setImage(with: resourceImage, options: [.forceRefresh])
+            backDropImage.kf.setImage(with: resourceImage, placeholder: UIImage(named: "backdrop-profile"), options: [.forceRefresh])
             
             let movieImage = ImageResource(downloadURL: URL(string: data?.poster_path.setURL() ?? "")!)
-            movieImg.kf.setImage(with: movieImage, options: [.forceRefresh])
+            movieImg.kf.setImage(with: movieImage, placeholder: UIImage(named: "backdrop-profile"), options: [.forceRefresh])
             
             movieTitleLabel.text = "\(data?.original_title ?? "") (\(data?.release_date.formatedDate(from: .dateWithStripReversed, format: .year) ?? ""))"
             overviewLabel.text = data?.overview
@@ -104,6 +107,17 @@ class MovieDetailVC: BaseVC, MovieDetailView {
     
     func update(with movies: MovieDetailBodyResponse) {
         data = movies
+    }
+    
+    func connectionError(with error: Int) {
+        let viewController = ConnectionLostVC(nibName: "ConnectionLostVC", bundle: nil)
+        self.popUpVC = STPopupController(rootViewController: viewController)
+        self.popUpVC?.style = .formSheet
+        self.popUpVC?.containerView.backgroundColor = UIColor.clear
+        self.popUpVC?.navigationBarHidden = true
+        DispatchQueue.main.async {
+            self.popUpVC?.present(in: self)
+        }
     }
     
     func update(with error: String) {

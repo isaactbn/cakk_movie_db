@@ -38,9 +38,16 @@ class GenrePresentation: GenrePresenter {
             
             view?.onFinishLoading()
             view?.update(with: model)
-        case .failure:
-            view?.onFinishLoading()
-            view?.update(with: "Something went wrong")
+        case .failure(let err as NSError):
+            DispatchQueue.main.async {
+                if err.code == 523 {
+                    self.view?.onFinishLoading()
+                    self.view?.connectionError(with: err.code)
+                } else {
+                    self.view?.onFinishLoading()
+                    self.view?.showError(msg: "Something went wrong")
+                }
+            }
         }
     }
 }

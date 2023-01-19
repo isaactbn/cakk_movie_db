@@ -25,8 +25,6 @@ open class CARequestService<T: Codable> {
     
     /// Request remote data
     /// - Parameters:
-    ///   - environment: determine the environment for base URL
-    ///   - config: request blueprint for API setup
     ///   - onSuccess: retrieve model from response
     ///   - onFailure: retrieve error from response
     public func request(api: String, path: String, onSuccess: OnSuccess<T>, onFailure: OnFailure) {
@@ -35,20 +33,39 @@ open class CARequestService<T: Codable> {
         guard let url = URL(string: setURL) else { return }
         print("finalURL", url)
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else {
-//                onFailure?(error!)
-                return
-            }
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
+            let result = self.setupResult(data: data)
             
-            do {
-                let entities = try JSONDecoder().decode(T.self, from: data)
-                onSuccess?(entities)
-            } catch {
+            switch result {
+            case .success(let model):
+                onSuccess?(model)
+            case .failure(let error):
                 onFailure?(error)
             }
-        }
+        })
         
         task.resume()
+    }
+    
+    
+    func setupResult(data: Data?) -> Result<T, Error> {
+        if Reachability.isConnectedToNetwork() {
+            do {
+                let decoder = decoder()
+                let model: T = try decoder.decode(T.self, from: data ?? Data())
+                return .success(model)
+            } catch {
+                return .failure(error)
+            }
+        } else {
+            let error: Error = NSError(domain: "Failed to connect to the internet. Check your internet connection", code: 523, userInfo: nil)
+            return .failure(error)
+        }
+    }
+    
+    func decoder() -> JSONDecoder {
+        let decoder = JSONDecoder()
+        // decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
     }
 }

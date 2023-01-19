@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import STPopup
 
 protocol MovieView: BaseView {
     var presenter: MoviePresenter? { get set }
@@ -14,6 +15,7 @@ protocol MovieView: BaseView {
     var navTitle: String {get set}
     
     func update(with movies: MovieBodyResponse)
+    func connectionError(with error: Int)
     func update(with error: String)
 }
 
@@ -24,6 +26,8 @@ class MovieViewVC: BaseVC, MovieView {
     var movies: [MovieResult]? = []
     
     var presenter: MoviePresenter?
+    
+    var popUpVC: STPopupController?
     
     var navTitle: String = ""
     var id: String = ""
@@ -65,6 +69,17 @@ class MovieViewVC: BaseVC, MovieView {
         }
     }
     
+    func connectionError(with error: Int) {
+        let viewController = ConnectionLostVC(nibName: "ConnectionLostVC", bundle: nil)
+        self.popUpVC = STPopupController(rootViewController: viewController)
+        self.popUpVC?.style = .formSheet
+        self.popUpVC?.containerView.backgroundColor = UIColor.clear
+        self.popUpVC?.navigationBarHidden = true
+        DispatchQueue.main.async {
+            self.popUpVC?.present(in: self)
+        }
+    }
+    
     func update(with error: String) {
         print(error)
     }
@@ -102,7 +117,7 @@ extension MovieViewVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         
         let resourceImage = ImageResource(downloadURL: URL(string: movies?[indexPath.row].poster_path.setURL() ?? "")!)
-        cell.backgroundImage.kf.setImage(with: resourceImage, options: [.forceRefresh])
+        cell.backgroundImage.kf.setImage(with: resourceImage, placeholder: UIImage(named: "backdrop-profile"), options: [.forceRefresh])
         cell.titleLabel.text = movies?[indexPath.row].original_title
         cell.descLabel.text = movies?[indexPath.row].release_date
         

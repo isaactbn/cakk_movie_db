@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import STPopup
 
 protocol GenreView: BaseView {
     var presenter: GenrePresenter? { get set }
     
     func update(with genres: [GenreBodyFullResponse])
+    func connectionError(with error: Int)
     func update(with error: String)
 }
 
@@ -21,6 +23,8 @@ class GenreViewController: BaseVC, GenreView {
     var genres: [GenreBodyFullResponse]? = []
     
     var presenter: GenrePresenter?
+    
+    var popUpVC: STPopupController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,17 @@ class GenreViewController: BaseVC, GenreView {
         DispatchQueue.main.async {
             self.genres = genres
             self.genreCollectionView.reloadData()
+        }
+    }
+    
+    func connectionError(with error: Int) {
+        let viewController = ConnectionLostVC(nibName: "ConnectionLostVC", bundle: nil)
+        self.popUpVC = STPopupController(rootViewController: viewController)
+        self.popUpVC?.style = .formSheet
+        self.popUpVC?.containerView.backgroundColor = UIColor.clear
+        self.popUpVC?.navigationBarHidden = true
+        DispatchQueue.main.async {
+            self.popUpVC?.present(in: self)
         }
     }
     

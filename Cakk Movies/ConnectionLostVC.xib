@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="WorkSans-Regular.ttf">
+            <string>WorkSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnecntionLostVC" customModule="Cakk_Movies" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="YQl-vq-V9X" id="cPz-BK-02G"/>
+                <outlet property="reloadButton" destination="Ydh-xv-xV6" id="CeO-X1-DMU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQl-vq-V9X">
+                    <rect key="frame" x="0.0" y="352" width="393" height="500"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="connection-lost" translatesAutoresizingMaskIntoConstraints="NO" id="gjZ-DY-aGz">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="396"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ydh-xv-xV6" userLabel="Reload">
+                            <rect key="frame" x="24" y="416" width="345" height="44"/>
+                            <color key="backgroundColor" red="0.14901960784313725" green="0.27884766459999999" blue="0.59610933070000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="VyF-Ol-ICY"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="WorkSans-Regular" family="Work Sans" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                            <state key="normal" title="Reload Page">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="reloadButtonAction:" destination="-1" eventType="touchUpInside" id="vNM-ZM-6un"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="gjZ-DY-aGz" firstAttribute="leading" secondItem="YQl-vq-V9X" secondAttribute="leading" id="2q7-KM-UUj"/>
+                        <constraint firstItem="Ydh-xv-xV6" firstAttribute="leading" secondItem="YQl-vq-V9X" secondAttribute="leading" constant="24" id="Cle-Dm-gba"/>
+                        <constraint firstItem="gjZ-DY-aGz" firstAttribute="top" secondItem="YQl-vq-V9X" secondAttribute="top" id="Emu-cm-lrQ"/>
+                        <constraint firstItem="gjZ-DY-aGz" firstAttribute="centerX" secondItem="YQl-vq-V9X" secondAttribute="centerX" id="K2x-LV-xkp"/>
+                        <constraint firstAttribute="bottom" secondItem="Ydh-xv-xV6" secondAttribute="bottom" constant="40" id="KV8-3R-UH8"/>
+                        <constraint firstItem="Ydh-xv-xV6" firstAttribute="top" secondItem="gjZ-DY-aGz" secondAttribute="bottom" constant="20" id="PMn-A8-X4J"/>
+                        <constraint firstAttribute="height" constant="500" id="YdT-3U-4Ab"/>
+                        <constraint firstAttribute="trailing" secondItem="Ydh-xv-xV6" secondAttribute="trailing" constant="24" id="qoc-UK-cWF"/>
+                        <constraint firstAttribute="trailing" secondItem="gjZ-DY-aGz" secondAttribute="trailing" id="smV-fT-epK"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="YQl-vq-V9X" secondAttribute="bottom" id="0oI-lI-Vaq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YQl-vq-V9X" secondAttribute="trailing" id="Fvs-MQ-Rt2"/>
+                <constraint firstItem="YQl-vq-V9X" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RN0-q4-cCg"/>
+                <constraint firstItem="YQl-vq-V9X" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="S2P-nV-qfX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YQl-vq-V9X" secondAttribute="trailing" id="f4E-VS-l2e"/>
+                <constraint firstItem="YQl-vq-V9X" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="oG3-Ph-pF6"/>
+            </constraints>
+            <point key="canvasLocation" x="0.76335877862595414" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="connection-lost" width="266.66665649414062" height="200"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
